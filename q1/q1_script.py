@@ -6,7 +6,7 @@
 import numpy as np
 import load_points
 import matplotlib.pyplot as plt
-
+import matplotlib as mpl
 
 
 
@@ -57,7 +57,7 @@ R1 = np.array([[0,-1,0],[1,0,0],[0,0,1]])
 R2 = np.array([[1,0,0],[0,0,-1],[0,1,0]])
 
 # Obtain the compound rotation
-R  = np.matmul(R1,R2)
+R  = np.matmul(R2,R1)
 
 # Intrinsic Camera Calibration Matrix
 K  = np.array([[7.215377e+02, 0.000000e+00, 6.095593e+02],[0.000000e+00, 7.215377e+02, 1.728540e+02],[0.000000e+00, 0.000000e+00, 1.000000e+00]])
@@ -75,14 +75,22 @@ points = np.append(points, np.ones((points.shape[0],1)), axis=1)
 image_points = np.matmul(P, points.T)
 image_points = image_points.T
 
-
+pic = plt.imread('image.png')
 # Plotting Image Points
 image_points[:,0] /= image_points[:,2]
 image_points[:,1] /= image_points[:,2]
 image_points[:,2] /= image_points[:,2]
-plt.scatter(image_points[:,0], image_points[:,1],s=0.2)
-plt.ylim((0, 512))
-plt.xlim((0, 1382))
+plt.imshow(pic)
+print(np.min(points[:,2]))
+print(np.max(points[:,2]))
+norm = mpl.colors.Normalize(vmin = np.min(points[:,2]),vmax = np.max(points[:,2]))
+mapcolor = ['red','yellow','blue','green']
+plt.scatter(image_points[:,0], image_points[:,1],s =0.2,c = points[:,2]*1000,cmap= mpl.cm.get_cmap('gist_ncar'))
+
+
+plt.ylim((0, 375))
+plt.xlim((0, 1242))
+plt.gca().invert_yaxis()
 plt.show()
 
 
