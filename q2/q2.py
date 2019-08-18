@@ -11,7 +11,11 @@ groundNormal = [[0,1,0]]
 WorldPoint = h*B/np.dot(groundNormal,B)
 
 d2point = np.matmul(K,WorldPoint)
+
+print("World Point")
 print(WorldPoint)
+
+print("D2 Point")
 print(d2point)
 
 carHeight = 1.38
