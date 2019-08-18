@@ -81,8 +81,8 @@ image_points[:,0] /= image_points[:,2]
 image_points[:,1] /= image_points[:,2]
 image_points[:,2] /= image_points[:,2]
 plt.scatter(image_points[:,0], image_points[:,1],s=0.2)
-plt.ylim((0, 512))
-plt.xlim((0, 1382))
+plt.ylim((-256, 256))
+plt.xlim((-659, 659))
 plt.show()
 
 
