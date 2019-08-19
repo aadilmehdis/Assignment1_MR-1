@@ -59,7 +59,7 @@ reprojected_points[:,2] = reprojected_points[:,2] / reprojected_points[:,2]
 
 # Decomposing to find R and T
 H1 = np.matmul(LA.inv(K),H)
-
+H1 = H1 / LA.norm(H1[:,0])
 # Finding the Orthogonal Matrix closest to (h1' h2' h1'*h2')
 R = np.zeros((3,3))
 R[:,0] = H1[:,0]
@@ -73,7 +73,7 @@ s_R = np.diag([1,1,LA.det(np.matmul(u_R, vh_R))])
 R = np.matmul(np.matmul(u_R, s_R), vh_R)
 
 # Translation Matrix
-T = H1[:,2] / LA.norm(H1[:,0])
+T = H1[:,2]# / LA.norm(H1[:,0])
 
 FMN = np.zeros((3,3))
 FMN[:,0] = R[:,0]
