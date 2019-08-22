@@ -73,7 +73,7 @@ s_R = np.diag([1,1,LA.det(np.matmul(u_R, vh_R))])
 R = np.matmul(np.matmul(u_R, s_R), vh_R)
 
 # Translation Matrix
-T = H1[:,2] / LA.norm(H1[:,0])
+# T = H1[:,2] / LA.norm(H1[:,0])
 
 FMN = np.zeros((3,3))
 FMN[:,0] = R[:,0]
@@ -107,3 +107,8 @@ FMP[:,2] = np.array([0,0,1]).T
 FMP[:,3] = T
 P = np.matmul(K,np.matmul(R, FMP))
 print(np.matmul(P,np.array([0,0,0,1]).T))
+img = plt.imread('image.png')
+plt.imshow(img)
+plt.scatter(reprojected_points[:,0],reprojected_points[:,1],s=10,c='r',marker='*')
+plt.scatter(reprojected_points1[:,0],reprojected_points1[:,1],s=10,c='b',marker='*')
+plt.show()
