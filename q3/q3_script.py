@@ -37,7 +37,7 @@ X = np.array([
 M1 = np.append(np.append(-X,np.zeros(X.shape),axis=1), X*x[:,0,None], axis=1)
 M2 = np.append(np.append(np.zeros(X.shape),-X,axis=1), X*x[:,1,None], axis=1)
 M  = np.zeros((16,9))
-for i in range(8):
+for i in range(1,8):
     M[2*i,:] = M1[i,:]
     M[2*i+1,:] = M2[i,:]
 
@@ -59,6 +59,7 @@ reprojected_points[:,2] = reprojected_points[:,2] / reprojected_points[:,2]
 
 # Decomposing to find R and T
 H1 = np.matmul(LA.inv(K),H)
+H1 = H1 / LA.norm(H1[:,0])
 
 # Finding the Orthogonal Matrix closest to (h1' h2' h1'*h2')
 R = np.zeros((3,3))
@@ -73,6 +74,7 @@ s_R = np.diag([1,1,LA.det(np.matmul(u_R, vh_R))])
 R = np.matmul(np.matmul(u_R, s_R), vh_R)
 
 # Translation Matrix
+T = H1[:,2]
 # T = H1[:,2] / LA.norm(H1[:,0])
 
 FMN = np.zeros((3,3))
@@ -109,6 +111,6 @@ P = np.matmul(K,np.matmul(R, FMP))
 print(np.matmul(P,np.array([0,0,0,1]).T))
 img = plt.imread('image.png')
 plt.imshow(img)
-plt.scatter(reprojected_points[:,0],reprojected_points[:,1],s=10,c='r',marker='*')
-plt.scatter(reprojected_points1[:,0],reprojected_points1[:,1],s=10,c='b',marker='*')
+plt.scatter(reprojected_points[:,0],reprojected_points[:,1],s=100,c='r',marker='*')
+plt.scatter(reprojected_points1[:,0],reprojected_points1[:,1],s=100,c='b',marker='*')
 plt.show()

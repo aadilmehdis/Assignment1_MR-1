@@ -42,8 +42,9 @@ img = plt.imread('image.png')
 image_points[:,0] /= image_points[:,2]
 image_points[:,1] /= image_points[:,2]
 image_points[:,2] /= image_points[:,2]
+print(image_points[:,0].shape)
 plt.imshow(img)
-plt.scatter(image_points[:,0], image_points[:,1],s =1,c = points[:,0],cmap= mpl.cm.get_cmap('nipy_spectral'))
+plt.scatter(image_points[:,0], image_points[:,1],s = 5,c = points[:,0],cmap= mpl.cm.get_cmap('nipy_spectral'))
 
 # Setting X and Y limits of the plot
 plt.ylim((0, 375))
