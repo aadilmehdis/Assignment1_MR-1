@@ -94,7 +94,7 @@ reprojected_points1[:,2] = reprojected_points1[:,2] / reprojected_points1[:,2]
 
 print("Reprojected points ")
 print(reprojected_points)
-print("Reprojected points 1")
+print("Reprojected points after decomposition")
 print(reprojected_points1)
 print("Rotation Matrix")
 print(R)
@@ -102,13 +102,16 @@ print(R)
 print("Translation Vector")
 print(T)
 
+print('[r1, r2, T]')
+
+print(np.mat([R[:,0],R[:,1],T]))
 FMP = np.zeros((3,4))
 FMP[:,0] = np.array([1,0,0]).T
 FMP[:,1] = np.array([0,1,0]).T
 FMP[:,2] = np.array([0,0,1]).T
 FMP[:,3] = T
 P = np.matmul(K,np.matmul(R, FMP))
-print(np.matmul(P,np.array([0,0,0,1]).T))
+# print(np.matmul(P,np.array([0,0,0,1]).T))
 img = plt.imread('image.png')
 plt.imshow(img)
 plt.scatter(reprojected_points[:,0],reprojected_points[:,1],s=100,c='r',marker='*')

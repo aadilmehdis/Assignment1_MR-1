@@ -11,8 +11,8 @@ groundNormal = [[0,1,0]]
 WorldPoint = h*B/np.dot(groundNormal,B)
 
 d2point = np.matmul(K,WorldPoint)
-print(WorldPoint)
-print(d2point)
+# print(WorldPoint)
+# print(d2point)
 
 carHeight = 1.38
 carWidth = 1.51
@@ -34,8 +34,8 @@ WorldPoint8 = np.matmul(Rot,[[carWidth],[-carHeight],[carLength]]) + WorldPoint
 
 WorldPoints = np.array((WorldPoint,WorldPoint2,WorldPoint3,WorldPoint4,WorldPoint5,WorldPoint6,WorldPoint7,WorldPoint8))
 
-print(K)
-print(WorldPoints[0])
+# print(K)
+# print(WorldPoints[0])
 # print(np.matmul(K,WorldPoint + WorldPoint2 ))
 # print(np.matmul(K,WorldPoint + WorldPoint3 ))
 # print(K[2][:])
@@ -49,14 +49,14 @@ for i in range(8):
     d2point = d2point/d2point[2]
     plt.plot(d2point[0],d2point[1],'bo')
 
-print(K)    
+# print(K)    
 linemat = np.mat(((),(),()))
 for i in range(edges.size):
     tmpmat = np.matmul(np.mat(K),np.mat(WorldPoints[edges[i] - 1]))
     tmpmat = tmpmat/tmpmat[2]
     linemat = np.hstack((linemat,tmpmat))
 
-print(linemat[0])    
+# print(linemat[0])    
 
 plt.plot(np.transpose(linemat[0]),np.transpose(linemat[1]),linewidth="2",c='r')    
 

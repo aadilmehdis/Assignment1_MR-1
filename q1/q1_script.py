@@ -27,7 +27,8 @@ K  = np.array([[7.215377e+02, 0.000000e+00, 6.095593e+02],[0.000000e+00, 7.21537
 # Getting the Projection Matrix
 P = np.matmul(K,np.matmul(R,T))
 
-
+print('Projection matrix')
+print(P)
 # Getting the Lidar points
 points = load_points.load_velodyne_points('lidar-points.bin')
 # Augmenting 1 for every vector to Homogenise the Vectors
@@ -42,7 +43,7 @@ img = plt.imread('image.png')
 image_points[:,0] /= image_points[:,2]
 image_points[:,1] /= image_points[:,2]
 image_points[:,2] /= image_points[:,2]
-print(image_points[:,0].shape)
+# print(image_points[:,0].shape)
 plt.imshow(img)
 plt.scatter(image_points[:,0], image_points[:,1],s = 5,c = points[:,0],cmap= mpl.cm.get_cmap('nipy_spectral'))
 
