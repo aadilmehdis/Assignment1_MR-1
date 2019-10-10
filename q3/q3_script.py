@@ -117,3 +117,5 @@ plt.imshow(img)
 plt.scatter(reprojected_points[:,0],reprojected_points[:,1],s=100,c='r',marker='*')
 plt.scatter(reprojected_points1[:,0],reprojected_points1[:,1],s=100,c='b',marker='*')
 plt.show()
+
+#some changes
